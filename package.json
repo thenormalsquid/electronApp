@@ -1,0 +1,115 @@
+{
+  "name": "electron-test",
+  "version": "1.0.0",
+  "description": "Basic image editing utility to test out electron",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom"
+  },
+  "bin": {
+    "electron": "./node_modules/.bin/electron"
+  },
+  "devEngines": {
+    "node": ">=7.x",
+    "npm": ">=3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "electron-test"
+  },
+  "keywords": [
+    "electron",
+    "photoshop",
+    "image",
+    "editing"
+  ],
+  "author": "thenormalsquid",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^19.2.3",
+    "@types/node": "^7.0.18",
+    "@types/react": "^15.0.24",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.40",
+    "react": "^15.5.4",
+    "react-desktop": "^0.3.0",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "app-root-path": "^2.0.1",
+    "autoprefixer": "6.7.2",
+    "case-sensitive-paths-webpack-plugin": "1.1.4",
+    "chalk": "1.1.3",
+    "cli-highlight": "1.1.4",
+    "connect-history-api-fallback": "1.3.0",
+    "create-react-app": "^1.3.0",
+    "cross-spawn": "4.0.2",
+    "css-loader": "0.26.1",
+    "detect-port": "1.1.0",
+    "devtron": "^1.4.0",
+    "dotenv": "2.0.0",
+    "electron": "^1.6.6",
+    "electron-debug": "^1.1.0",
+    "electron-packager": "^8.7.0",
+    "electron-winstaller": "^2.5.2",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.10.0",
+    "fs-extra": "0.30.0",
+    "html-webpack-plugin": "2.24.0",
+    "http-proxy-middleware": "0.17.3",
+    "immutable": "^3.8.1",
+    "jest": "18.1.0",
+    "json-loader": "0.5.4",
+    "object-assign": "4.1.1",
+    "postcss-loader": "1.2.2",
+    "promise": "7.1.1",
+    "react-dev-utils": "^0.5.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "spectron": "^3.6.2",
+    "style-loader": "0.13.1",
+    "ts-loader": "^1.3.1",
+    "tslint": "^4.0.2",
+    "tslint-loader": "^3.3.0",
+    "tslint-react": "^2.0.0",
+    "typescript": "^2.2.2",
+    "typings": "^2.1.1",
+    "url-loader": "0.5.7",
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2",
+    "webpack-manifest-plugin": "1.1.0",
+    "whatwg-fetch": "2.0.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
+      "^(?!.*\\.(css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  }
+}
