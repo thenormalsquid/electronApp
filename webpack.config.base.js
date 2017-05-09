@@ -3,20 +3,16 @@
  */
 
 const path = require('path');
-const validate = require('webpack-validator');
 const {
   dependencies: externals
 } = require('./app/package.json');
 
-module.exports = validate({
+module.exports = {
   module: {
-    loaders: [{
+    rules: [{
       test: /\.tsx?$/,
       loaders: ['ts-loader'],
       exclude: /node_modules/
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
     }, {
       test: /\.(scss|sass)$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
@@ -26,14 +22,14 @@ module.exports = validate({
   output: {
     path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
-
-    // https://github.com/webpack/webpack/issues/1114
     libraryTarget: 'commonjs2'
   },
 
-  // https://webpack.github.io/docs/configuration.html#resolve
+  // https://webpack.js.org/configuration/resolve/
   resolve: {
-    root: path.resolve(__dirname),
+    modules: [
+      path.resolve(__dirname)
+    ],
     alias: {
       components: 'app/components',
       containers: 'app/containers',
@@ -48,4 +44,4 @@ module.exports = validate({
   plugins: [],
 
   externals: Object.keys(externals || {})
-});
+};

@@ -16,3 +16,10 @@ Experimenting with a react, redux, and typescript app wrapped by electron. Simpl
     - Redo UI plus: `CTRL+R` for windows and `CMD+R` for mac
 - Drag and drop image loader
 - Sticker effect
+
+## Up and running:
+* Install deps: `npm install`
+* Run hot-server: `npm run dev`
+* Test: `npm run test`
+* Test-e2e: `npm run test-e2e`
+* Test-watcher: `npm run test-watch`
