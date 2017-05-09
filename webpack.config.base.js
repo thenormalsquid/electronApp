@@ -2,46 +2,45 @@
  * Base webpack config used across other specific configs
  */
 
-const path = require('path');
-const {
-  dependencies: externals
-} = require('./app/package.json');
+import path from 'path';
+import webpack from 'webpack';
+import { dependencies as externals } from './app/package.json';
 
-module.exports = {
+export default {
+  externals: Object.keys(externals || {}),
+
   module: {
     rules: [{
-      test: /\.tsx?$/,
-      loaders: ['ts-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.(scss|sass)$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader']
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      }
     }]
   },
 
   output: {
     path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
+    // https://github.com/webpack/webpack/issues/1114
     libraryTarget: 'commonjs2'
   },
 
-  // https://webpack.js.org/configuration/resolve/
+  /**
+   * Determine the array of extensions that should be used to resolve modules.
+   */
   resolve: {
+    extensions: ['.js', '.jsx', '.json'],
     modules: [
-      path.resolve(__dirname)
+      path.join(__dirname, 'app'),
+      'node_modules',
     ],
-    alias: {
-      components: 'app/components',
-      containers: 'app/containers',
-      reducers: 'app/reducers',
-      utils: 'app/utils',
-      actions: 'app/actions'
-    },
-    extensions: ['', '.js', '.ts', '.tsx', '.json'],
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
-  plugins: [],
-
-  externals: Object.keys(externals || {})
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+  ],
 };
