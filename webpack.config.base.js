@@ -33,6 +33,14 @@ module.exports = validate({
 
   // https://webpack.github.io/docs/configuration.html#resolve
   resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      components: 'app/components',
+      containers: 'app/containers',
+      reducers: 'app/reducers',
+      utils: 'app/utils',
+      actions: 'app/actions'
+    },
     extensions: ['', '.js', '.ts', '.tsx', '.json'],
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },

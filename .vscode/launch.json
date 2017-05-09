@@ -13,6 +13,10 @@
         },
         "runtimeArgs": [
             "--max_old_space_size=2096"
+        ],
+        "args": [
+            "--",
+            "--start-hot"
         ]
     }]
 }
