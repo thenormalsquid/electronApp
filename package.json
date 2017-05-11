@@ -4,7 +4,7 @@
   "version": "0.12.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "scripts": {
-    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js",
+    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests",
     "test-all": "npm run lint && npm run flow && npm run test && npm run build && npm run test-e2e",
     "test-watch": "npm test -- --watch",
     "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings ./test/runTests.js e2e",
@@ -31,8 +31,8 @@
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "ElectronApp",
+    "appId": "org.develar.ElectronApp",
     "files": [
       "dist/",
       "node_modules/",
@@ -42,7 +42,8 @@
       "package.json"
     ],
     "dmg": {
-      "contents": [{
+      "contents": [
+        {
           "x": 130,
           "y": 220
         },
@@ -121,6 +122,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-plugin-flow-runtime": "^0.11.1",
+    "babel-plugin-module-resolver": "^2.7.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
     "babel-polyfill": "^6.23.0",
@@ -142,7 +144,7 @@
     "electron-devtools-installer": "^2.2.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
-    "eslint": "^3.19.0",
+    "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-formatter-pretty": "^1.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
@@ -153,7 +155,7 @@
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-react": "^6.9.0",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "fbjs-scripts": "^0.7.1",
@@ -189,13 +191,16 @@
     "font-awesome": "^4.7.0",
     "history": "^4.6.1",
     "react": "^15.5.4",
+    "react-desktop": "^0.3.0",
     "react-dom": "^15.5.4",
     "react-hot-loader": "3.0.0-beta.6",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
+    "recompose": "^0.23.1",
     "redux": "^3.6.0",
+    "redux-promise-middleware": "^4.2.0",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.4.15"
   },

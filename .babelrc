@@ -7,7 +7,21 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports", "dynamic-import-webpack"],
+  "plugins": [
+    "add-module-exports",
+    "dynamic-import-webpack", 
+    ["module-resolver", {
+        "alias": {
+          "test": "./test",
+          "components": "./app/components",
+          "containers": "./app/containers",
+          "reducers": "./app/reducers",
+          "actions": "./app/actions",
+          "store": "./app/store",
+          "utils": "./app/utils"
+        }
+      }]
+  ],
   "env": {
     "production": {
       "presets": ["react-optimize"],

@@ -1,10 +1,15 @@
 // @flow
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import counter from './counter';
+import type { imageStateType } from 'reducers/image';
+import image from 'reducers/image';
+
+export type globalStateType = {
+  image: imageStateType
+};
 
 const rootReducer = combineReducers({
-  counter,
+  image,
   router,
 });
 
