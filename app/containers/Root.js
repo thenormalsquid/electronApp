@@ -5,8 +5,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import Routes from 'routes';
 
 type RootType = {
-  store: {},
-  history: {}
+  store: {};
+  history: {};
 };
 
 export default function Root({ store, history }: RootType) {

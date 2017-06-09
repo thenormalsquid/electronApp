@@ -6,8 +6,6 @@ import HomeContainer from 'containers/HomeContainer';
 
 export default () => (
   <AppContainer>
-    <Switch>
-      <Route path="/" component={HomeContainer} />
-    </Switch>
+     <Route component={HomeContainer} />
   </AppContainer>
 );

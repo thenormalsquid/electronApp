@@ -1,5 +1,5 @@
 // @flow
-import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
+import { app, Menu, shell, BrowserWindow, dialog, ipcMain } from 'electron';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -8,7 +8,7 @@ export default class MenuBuilder {
     this.mainWindow = mainWindow;
   }
 
-  openDialog() {
+  openDialog(win) {
     // returns string of the filename
     // callback can be action dispatcher for opening file
     // action dispatcher will:
@@ -19,8 +19,12 @@ export default class MenuBuilder {
     dialog.showOpenDialog({
       properties: ['openFile', 'createDirectory'],
       filters: [
-         {name: 'Images', extensions: ['jpg', 'png', 'gif', 'bmp']}
+        {name: 'Images', extensions: ['jpg', 'png', 'gif', 'bmp']}
       ]
+    }, (fileNames) => {
+      if (fileNames.length > 0) {
+        win.webContents.send('file-upload-menu-success', fileNames[0]);
+      }
     });
   }
 
@@ -128,7 +132,7 @@ export default class MenuBuilder {
       submenu: [{
         label: '&Open',
         accelerator: 'Ctrl+O',
-        click: this.openDialog
+        click: () => { this.openDialog(this.mainWindow) }
       }, {
         label: '&Close',
         accelerator: 'Ctrl+W',

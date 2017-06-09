@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
-import * as actions from 'actions/image';
+import actions from 'actions';
 import type { imageStateType } from 'reducers/image';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 
 const configureStore = (initialState: ?imageStateType) => {
   // Redux Configuration
@@ -18,8 +18,7 @@ const configureStore = (initialState: ?imageStateType) => {
   // Thunk Middleware
   middleware.push(thunk);
 
-  // Promise Middleware
-  middleware.push(promiseMiddleware);
+  middleware.push(promiseMiddleware());
 
   // Logging Middleware
   const logger = createLogger({
@@ -37,6 +36,7 @@ const configureStore = (initialState: ?imageStateType) => {
     ...actions,
     ...routerActions,
   };
+
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

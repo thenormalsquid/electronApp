@@ -1,37 +1,33 @@
 // @flow
-import type { counterStateType } from 'reducers/image';
+import type { imageStateType } from 'reducers/image';
 
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+import { 
+  UPLOAD_IMAGE,
+  UPLOAD_IMAGE_ERR
+} from 'actions/constants';
 
-export function increment() {
-  return {
-    type: INCREMENT_COUNTER
-  };
-}
+export const FAILEDUPLOADMSG = 'Failed to upload that image.';
 
-export function decrement() {
-  return {
-    type: DECREMENT_COUNTER
-  };
-}
+export const uploadImage = (filename: string) => ({
+    type: UPLOAD_IMAGE,
+    payload: new Promise((resolve, reject) => {
+      if(!filename) {
+        reject(FAILEDUPLOADMSG);
+      }
+      const image = new Image();
+      image.onload = (e) => {
+        const { width, height } = e.target;
+        const dHeight = 800 / height;
 
-export function incrementIfOdd() {
-  return (dispatch: () => void, getState: () => counterStateType) => {
-    const { counter } = getState();
+        // scale image width down if width > 800
+        const newHeight = (width > 800) ? height * dHeight : height;
+        const newWidth = (width > 800) ? 800 : width;
+        resolve({ image: e.target, width: newWidth, height: newHeight });
+      };
+      image.onerror = () => {
+        reject(FAILEDUPLOADMSG);
+      };
 
-    if (counter % 2 === 0) {
-      return;
-    }
-
-    dispatch(increment());
-  };
-}
-
-export function incrementAsync(delay: number = 1000) {
-  return (dispatch: () => void) => {
-    setTimeout(() => {
-      dispatch(increment());
-    }, delay);
-  };
-}
+      image.src = filename;
+    })
+});

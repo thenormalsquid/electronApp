@@ -1,9 +1,14 @@
 // @flow
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from 'actions/image';
+import typeToReducer from 'type-to-reducer';
+import { 
+  UPLOAD_IMAGE
+} from 'actions/constants';
 
 export type imageStateType = {
   width: number,
-  height: number
+  height: number,
+  error: ?string,
+  imageObj: ?HTMLImageElement
 };
 
 type actionType = {
@@ -12,16 +17,25 @@ type actionType = {
 
 const initialState = {
   width: 800,
-  height: 600
+  height: 600,
+  imageObj: null,
+  error: null
 };
 
-export default function image(state: imageStateType = initialState, action: actionType) {
-  switch (action.type) {
-    case INCREMENT_COUNTER:
-      return state + 1;
-    case DECREMENT_COUNTER:
-      return state - 1;
-    default:
-      return state;
+const uploadImageReducer = (isReject?: boolean) => 
+  (state: imageStateType, action: actionType) => {
+    if(isReject) {
+      return { ...state, error: action.payload };
+    }
+    const { payload } = action;
+    return { ...state, imageObj: payload.image, width: payload.width, height: payload.height  } ;
+};
+
+const image = typeToReducer({
+  [UPLOAD_IMAGE]: {
+    REJECTED: uploadImageReducer(true),
+    FULFILLED: uploadImageReducer()
   }
-}
+}, initialState);
+
+export default image;
