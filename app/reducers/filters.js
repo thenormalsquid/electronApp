@@ -22,7 +22,6 @@ const initialState = {
       { name: 'Sticker', path: '/sticker', requiredImages: 2 },
       { name: 'Image Compare', path: '/compare', requiredImages: 2 }
   ],
-  selectedFilter: null,
   isPending: false,
   requiredImages: 0
 };

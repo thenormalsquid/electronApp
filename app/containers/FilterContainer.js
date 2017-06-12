@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { compose, pure } from 'recompose';
+import { compose, pure, mapProps, componentFromProp } from 'recompose';
 import { connect } from 'react-redux';
 
 //action creators
@@ -15,12 +15,11 @@ type Props = {
 } & WrappedProps;
 
 export const FilterContainer = (props: Props) =>
-    <div>Hi there </div>;
+    <div></div>;
 
 const enhance = compose(
     connect((state, ownProps) => ({
         filterList: state.filters.list,
-        selectedFilter: state.filters && state.filters.list[parseInt(ownProps.match.params.id, 10)] 
       }), {
       uploadImage
     }),
